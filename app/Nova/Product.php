@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Product extends Resource
@@ -41,6 +42,11 @@ class Product extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('title')->sortable(),
+            Text::make('description'),
+            Text::make('price'),
+            Text::make('brand'),
+            Text::make('stock')
         ];
     }
 
