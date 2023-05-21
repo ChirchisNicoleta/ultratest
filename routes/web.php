@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[\App\Http\Controllers\ProductController::class, 'index']);
+Route::get('/',[\App\Http\Controllers\ProductController::class, 'index'])->name('/');
+Route::get('/cart',[\App\Http\Controllers\CartController::class, 'index'])->name('cart');
 
 
 
