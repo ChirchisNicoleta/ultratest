@@ -3,9 +3,12 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Ramsey\Uuid\Type\Integer;
 
 class Product extends Resource
 {
@@ -46,7 +49,8 @@ class Product extends Resource
             Text::make('description'),
             Text::make('price'),
             Text::make('brand'),
-            Text::make('stock')
+            Text::make('stock'),
+            Image::make('product_photo_path')->disk('public'),
         ];
     }
 
