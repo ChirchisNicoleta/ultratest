@@ -20,7 +20,7 @@
                             </div>
                         </div>
 
-                        @livewire('delete-button', ['productId' => $product['id']])
+                        @livewire('delete-button', ['productId' => $product['id']], key($product['id']))
 
                     </div>
                 </div>

@@ -9,16 +9,20 @@ class Cart extends Component
 {
     public $products;
 
+    protected $listeners = ['cartUpdated' => '$refresh'];
 
     public function render()
     {
         $products = [];
 
-        $arrayOfProductsOnCartFromSession = session('cart');
-        if (!empty($arrayOfProductsOnCartFromSession)) {
-            $products = Product::whereIn('id', $arrayOfProductsOnCartFromSession)->get();
+        $arrayOfProductsInCartFromSession = session('cart');
+
+        if (!empty($arrayOfProductsInCartFromSession)) {
+            $products = Product::whereIn('id', $arrayOfProductsInCartFromSession)->get();
         }
+
         $this->products = $products;
+
         return view('livewire.cart');
     }
 }

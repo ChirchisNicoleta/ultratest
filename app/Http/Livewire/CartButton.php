@@ -14,8 +14,10 @@ class CartButton extends Component
     {
         $this->productId = $productId;
 
-        session()->push('cart', $productId);
-
+        if (!in_array($productId, session('cart', []))) {
+            session()->push('cart', $productId);
+            $this->emit('cartUpdated');
+        }
     }
 
     public function render()

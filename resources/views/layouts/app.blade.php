@@ -18,23 +18,24 @@
 <div>
     <nav class="bg-black text-white">
         <div class="flex flex-row justify-end px-6 py-4 sm:block bg-gray-100">
-            <a href="{{ route('cart') }}"
-               class="ml-4 text-sm text-gray-700 underline text-xl">In cos() </a>
+            @livewire('basket-button')
+
+            <a href="{{ route('/') }}" class="text-sm text-gray-700 underline text-xl">/ Home</a>
 
         @if (Route::has('login'))
             @auth
                 <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}" x-data>
+                    <form class="inline-block border p-2" method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
 
-                        <input type="submit" value="{{ __('Log Out') }}"/>
+                        <input class="text-black text-xl" type="submit" value="{{ __('Log Out') }}"/>
 
                     </form>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 underline text-xl">/ Log in /</a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
+                        <a href="{{route('register')}}"
                            class="ml-4 text-sm text-gray-700 underline text-xl">Register</a>
                     @endif
                 @endauth
