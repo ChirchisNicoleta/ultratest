@@ -1,45 +1,48 @@
-<!DOCTYPE html>
+<?php session_start() ?>
+        <!DOCTYPE html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <!-- Fonts -->
+    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    @vite('resources/css/app.css')
+    @livewireStyles
+</head>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+<body class="container">
+<div>
+    <nav class="bg-black text-white">
+        <div class="flex flex-row justify-end px-6 py-4 sm:block bg-gray-100">
+            <a href="{{ route('cart') }}"
+               class="ml-4 text-sm text-gray-700 underline text-xl">In cos() </a>
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-banner />
+        @if (Route::has('login'))
+            @auth
+                <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+                        <input type="submit" value="{{ __('Log Out') }}"/>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline text-xl">/ Log in /</a>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}"
+                           class="ml-4 text-sm text-gray-700 underline text-xl">Register</a>
+                    @endif
+                @endauth
         </div>
-
-        @stack('modals')
-
-        @livewireScripts
-    </body>
+    @endif
+</div>
+</nav>
+{{ $slot }}
+@livewireScripts
+</body>
 </html>

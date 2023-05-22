@@ -14,12 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('product_status', 'active')->get();
-        $productsOnCart = 0;
-        if(session('cart')) {
-            $productsOnCart = count(array_unique(session('cart')));
-        }
-        return view('welcome', compact("products", "productsOnCart"));
+
+        return view('welcome');
     }
 
     /**
