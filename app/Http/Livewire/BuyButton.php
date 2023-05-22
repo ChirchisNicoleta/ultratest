@@ -23,9 +23,7 @@ class BuyButton extends Component
 
             $orderId = \App\Models\Order::create([
                 'user_id' => Auth::id(),
-                'amount' => $amount,
-                'payment_method' => 1,
-                'delivery' => 1
+                'amount' => $amount
             ]);
 
             $id = $orderId->id;

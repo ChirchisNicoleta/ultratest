@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->integer('amount');
-            $table->integer('payment_method');
-            $table->integer('delivery');
+            $table->integer('payment_method')->nullable();
+            $table->integer('delivery')->nullable();
         });
     }
 
